@@ -12,6 +12,10 @@ Demo uygulama için seçilen Rick And Morty çizgi filminin api'si
  
 ●	Spring Data (JPA) kullanılmıştır. MongoDB ile her bir document için “com/egemsoft/rickandmorty/domain” klasöründe bir class oluşturulmuştur. Veritabanı bağlantıları için ise “com/egemsoft/rickandmorty/repository” klasöründe her bir dökümanın repository’leri oluşturulmuştur.
 
+●	MongoDB için Mongo Atlas’tan bir cluster açılmıştır. Herhangi bir mongodb kurulumu gerektirmemektedir. Aşağıda verdiğim URI ile MongoDB Compass üzerinen izlenilebilir. Boş bir veritabanıyla çalışmaya başlayacaktır.
+MongoDB Compass İndirme Linki: https://www.mongodb.com/try/download/compass
+Mongo Atlas Cluster URI: mongodb+srv://testuser:testuser@cluster0-fyb4u.mongodb.net/test
+
 ●	Verilen api örnek alındığından oluşan tüm endpointler ve sonuçları exception’ları ile beraber uygulamada bulunmaktadır. 
 
 ●	Javadoc’lar dökümanın devamı olarak okunabilir
