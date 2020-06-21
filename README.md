@@ -114,10 +114,13 @@ i.	/report
 
 3.	Gelen/giden header ve body’leri nelerdir? Bunların detaylarını zamanları ile birlikte bir history şeklinde göstermelidir.
 
-4.	Report oluşturma için kullanılması gereken header ve body’leri çekme gereksinimi için Filter kullanılmıştır. Bu filter aşağıdaki ekran görüntüsünde verilmektedir.
+d.	SystemInfo
 
- 
-Bu filter içerisinde yakalanan her bir isteğin hangi controller’a gittiğine bakılarak farklı ResponseType’a sahip Report objeleri oluşturulmaktadır. Objelerin ve ilgili fonksiyonların tamamı açıklayıcı şekilde yazılmıştır. “saveRequestAndBodyAsReport(req,requestBody)” fonksiyonu izlenerek ilgili adımlar incelenebilir.
+i.	/systemInfo
+
+1.	SystemInfo class’ında bir obje döner. Sistemin veritabanı güncellenme tarihini tutar.
+
+
 
 Eksik Gereksinimler: 
 
@@ -125,3 +128,7 @@ Eksik Gereksinimler:
 
 -	Yazılan endpointlerin karmaşıklıklıkları(BigO) yorumlar halinde javadoc’a eklenmelidir.
 
+
+4.	Report oluşturma için kullanılması gereken header ve body’leri çekme gereksinimi için Filter kullanılmıştır. Bu filter aşağıdaki ekran görüntüsünde verilmektedir.
+
+ Bu filter içerisinde yakalanan her bir isteğin hangi controller’a gittiğine bakılarak farklı ResponseType’a sahip Report objeleri oluşturulmaktadır. Objelerin ve ilgili fonksiyonların tamamı açıklayıcı şekilde yazılmıştır. “saveRequestAndBodyAsReport(req,requestBody)” fonksiyonu izlenerek ilgili adımlar incelenebilir.
