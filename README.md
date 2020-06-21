@@ -18,6 +18,12 @@ MongoDB Compass İndirme Linki: https://www.mongodb.com/try/download/compass
 
 Mongo Atlas Cluster URI: mongodb+srv://testuser:testuser@cluster0-fyb4u.mongodb.net/RickAndMorty
 
+● MongoDB için 2 profil oluşturuldu;
+
+1.local -> localhost'ta çalışan bir MongoDB varsa  
+  
+2.test -> Mongo Atlas'ta bir cluster'a bağlanıp otomatik başlar
+
 ●	Verilen api örnek alındığından oluşan tüm endpointler ve sonuçları exception’ları ile beraber uygulamada bulunmaktadır. 
 
 ●	Javadoc’lar dökümanın devamı olarak okunabilir
