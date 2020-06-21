@@ -16,7 +16,7 @@ Demo uygulama için seçilen Rick And Morty çizgi filminin api'si
 
 MongoDB Compass İndirme Linki: https://www.mongodb.com/try/download/compass
 
-Mongo Atlas Cluster URI: mongodb+srv://testuser:testuser@cluster0-fyb4u.mongodb.net/test
+Mongo Atlas Cluster URI: mongodb+srv://testuser:testuser@cluster0-fyb4u.mongodb.net/RickAndMorty
 
 ●	Verilen api örnek alındığından oluşan tüm endpointler ve sonuçları exception’ları ile beraber uygulamada bulunmaktadır. 
 
