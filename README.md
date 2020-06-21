@@ -22,7 +22,7 @@ Mongo Atlas Cluster URI: mongodb+srv://testuser:testuser@cluster0-fyb4u.mongodb.
 
 1.local -> localhost'ta çalışan bir MongoDB varsa  
   
-2.test -> Mongo Atlas'ta bir cluster'a bağlanıp otomatik başlar
+2.test -> Mongo Atlas'ta bir cluster'a bağlanıp otomatik başlar. Compiling 1 dakikayı bulabilir.
 
 ●	Verilen api örnek alındığından oluşan tüm endpointler ve sonuçları exception’ları ile beraber uygulamada bulunmaktadır. 
 
