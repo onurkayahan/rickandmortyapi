@@ -120,7 +120,7 @@ i.	/systemInfo
 
 1.	SystemInfo class’ında bir obje döner. Sistemin veritabanı güncellenme tarihini tutar.
 
-4.	Report oluşturma için kullanılması gereken header ve body’leri çekme gereksinimi için Filter kullanılmıştır. Bu filter aşağıdaki ekran görüntüsünde verilmektedir.
+  4.	Report oluşturma için kullanılması gereken header ve body’leri çekme gereksinimi için Filter kullanılmıştır. Bu filter aşağıdaki ekran görüntüsünde verilmektedir.
 
  Bu filter içerisinde yakalanan her bir isteğin hangi controller’a gittiğine bakılarak farklı ResponseType’a sahip Report objeleri oluşturulmaktadır. Objelerin ve ilgili fonksiyonların tamamı açıklayıcı şekilde yazılmıştır. “saveRequestAndBodyAsReport(req,requestBody)” fonksiyonu izlenerek ilgili adımlar incelenebilir.
  
