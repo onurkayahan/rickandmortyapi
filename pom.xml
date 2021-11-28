@@ -8,11 +8,11 @@
         <version>2.1.2.RELEASE</version>
         <relativePath/>
     </parent>
-    <groupId>com.egemsoft</groupId>
+    <groupId>com.onurkayahan</groupId>
     <artifactId>rickandmorty</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>rickandmorty</name>
-    <description>Demo project for Egemsoft</description>
+    <description>Demo project for Spring Boot Portfolio</description>
 
     <properties>
         <java.version>11</java.version>
@@ -48,11 +48,6 @@
             <groupId>com.googlecode.json-simple</groupId>
             <artifactId>json-simple</artifactId>
             <version>1.1.1</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>2.5</version>
         </dependency>
     </dependencies>
 

@@ -1,132 +1,63 @@
-RickAndMorty Uygulaması
+RickAndMorty Api Clone
 
-Demo uygulama için seçilen Rick And Morty çizgi filminin api'si
-(GET - https://rickandmortyapi.com/api/ ) seçilmiştir. Bu api üzerinde bulunan tüm endpoint’leri RickAndMorty uygulaması da içermektedir. 
+Spring Boot Application for produce clone API of Rick And Morty series. Every request parameters and exception handling messages on official media is cloned.
 
-●	Java 11 ve MongoDB 4 kullanılmıştır.
-
-●	Uygulama Spring Boot ile yapılmıştır. 8080 portunda çalışmaktadır.
-
-●	Uygulamada Layered Architecture yapısı kullanılmıştır. 
- 
- 
-●	Spring Data (JPA) kullanılmıştır. MongoDB ile her bir document için “com/egemsoft/rickandmorty/domain” klasöründe bir class oluşturulmuştur. Veritabanı bağlantıları için ise “com/egemsoft/rickandmorty/repository” klasöründe her bir dökümanın repository’leri oluşturulmuştur.
-
-●	MongoDB için Mongo Atlas’tan bir cluster açılmıştır. Herhangi bir mongodb kurulumu gerektirmemektedir. Aşağıda verdiğim URI ile MongoDB Compass üzerinen izlenilebilir. Boş bir veritabanıyla çalışmaya başlayacaktır.
-
-MongoDB Compass İndirme Linki: https://www.mongodb.com/try/download/compass
-
-Mongo Atlas Cluster URI: mongodb+srv://testuser:testuser@cluster0-fyb4u.mongodb.net/RickAndMorty
-
-● MongoDB için 2 profil oluşturuldu;
-
-1.local -> localhost'ta çalışan bir MongoDB varsa  
-  
-2.test -> Mongo Atlas'ta bir cluster'a bağlanıp otomatik başlar. Compiling 1 dakikayı bulabilir.
-
-●	Verilen api örnek alındığından oluşan tüm endpointler ve sonuçları exception’ları ile beraber uygulamada bulunmaktadır. 
-
-●	Javadoc’lar dökümanın devamı olarak okunabilir
-
-●	Hata yönetimleri ve uygulanan işlemler ve için bazı yerlerde org.slf4j.Logger kullanılmıştır. Console izlenilebilir
-
-●	Thread örneği için bir endpoint yaratılmamıştır. Thread ile ilk defa uğraştığım için basit bir örnek yaptım. Endpoint olmadığı için uygulama başlarken apiden tüm veriler çekildikten sonra Thread’ler çalıştırılmaya başlar. 
-“com/egemsoft/rickandmorty/thread/CharacterNameCounterExecuterService.java” 
-adresindeki class içerisinde tüm Character objelerinin “name” alanlarını listesini çekip 
-25 eşit büyüklükte listeye böldükten sonra her bir listeye 1 Thread açtım. Her bir thread aşağıdaki ekran görüntüsünde gösterilmiştir.
-
-bir static total bir de kendi count’unu tutmaktadır. Ayrıca uygulama başlarken çalıştığı için apiden verilerin çekilmesini bekler. Verileri çekme işlemi tamamlanınca karakter sayıları toplanır, console’a yazılır. Uygulama açıldığında console üzerinden incelenebilir.
+Official API: (GET - https://rickandmortyapi.com/api/ )
 
 
-Uygulamadaki adımlar aşağıdaki gibi olmalıdır.
 
-1.	Modelleme 
 
-a.	GET - https://rickandmortyapi.com/api/   api yolu ile belirtilmiş olan adresten oluşacak bütün endpointlerin response tipleri modellenmiştir..
+●	Java 11 ve MongoDB 4
 
-b.	Database için MongoDB kullanılmıştır. Api üzerinden oluşan tüm Dökümanlar için ortak olan 4 değer için ayrı bir Base class oluşturulmuştur. Character, Episode ve Location class’ları bu class’a extend edilmiştir.
+●	Working on port 8080
 
-2.	Data hazırlık
+●   Layered Architecture
 
-a.	Uygulama başlarken belirtilen api üzerinden tüm kaynağı çekip veritabanına kaydetmektedir. Bu işlem uygulama başlarken ilk sırada çalışmaktadır. Uygulama her başlatıldığında bu datalar yenilenmektedir.
+●	Spring Data (JPA)
 
-b.	Data çekilirken Scheduler çalıştırmaktadır. Scheduler ile her gece saat 00:00’da tüm apiyi tekrar çekip update etmektedir. Update işlemi api’den silinmiş dosyaları silme işlemi yapmamaktadır. Detaylı bilgi için “com/egemsoft/rickandmorty/service/InitService.java” servisi incelenebilir. Ayrıca GET - localhost:8080/api/systemInfo ile veritabanının son güncellendiği tarih görüntülenebilir.
+● 	There are two profile for launch the application.
 
-c.	Aşağıdaki yazılacak endpointler istek anında “rickandmortyapi” apisini tetikleyip gelen cevapları işlemeyecektir. Data hazırlık aşamasında hazırlanmış olan datalardan cevap vermektedir.
+	- dev: If user want to store data in local MongoDB.
+	- test: If user want to store data in MongoDB Atlas (Cloud) //Compiling can be take 1-2 minutes.
 
-3.	RestFull WebService 
+●	After the storing data is completed, I created an example for multithread letter count of all the character data's name value.
+It chops the data to 25 equal list of character data and start to count these list with 25 thread. It can be review on com/onurkayahan/rickandmorty/thread/CharacterNameCounterExecuterService.java
 
-Bu gereksinim için “/thread-demo” hariç hepsi yapılmıştır. Hepsinde “orderBy” query parametresi ile sıralanacağı alan verilerek sıralanabilir. Örneğin;
+●	Scheduled task added for update DB everyday at 00:00. Also it store it on SystemInfo.
 
-GET - http://localhost:8080/api/character/?page=1&orderBy=name isteği ile sıralanmış bir 20 adet Character içeren 1. page dönmektedir. “page” ve “orderBy” parametreleri required değildir. 
 
-– Thread 
+
+
+
+Example: http://localhost:8080/api/character/?page=1&orderBy=name
+
+	- Page and orderBy parameters are not required
+	- OrderBy can take every object key value.
 
 a.	Character
 
-i.	/character
+	i.	/api/character
 
-1.	Yukarıda belirtildiği gibi bir endpoint açılmalıdır. Sisteme kayıtlı tüm kayıtların listesini dönmelidir. 
-
-2.	Örnek alınan apideki gibi pagination yapısı bulunması artı sebebidir.
-
-3.	Endpoint içerisine sıralama için bir parametre belirtilebilmelidir. Bu parametre ile gelen kayıtlar isme göre veya oynadığı bölüm sayısına göre sıralanabilmelidir. Bu alan zorunlu olmamalıdır.
-
-ii.	/character/{id}
-
-1.	Yukarıda belirtildiği gibi bir endpoint açılmalıdır. Sisteme kayıtlı belirtilen karakterin bilgilerini dönmelidir. 
+	ii.	/api/character/{id}
 
 b.	Episode
 
-i.	/episode
+	i.	/api/episode
 
-1.	Yukarıda belirtildiği gibi bir endpoint açılmalıdır. Sisteme kayıtlı tüm kayıtların listesini dönmelidir. 
-
-2.	Örnek alınan apideki gibi pagination yapısı bulunması artı sebebidir.
-
-3.	Endpoint içerisine sıralama için bir parametre belirtilebilmelidir. Bu paramerte ile gelen kayıtlar isme göre veya oynayan karakter sayısına göre sıralanabilmelidir. Bu alan zorunlu olmamalıdır.
-
-ii.	/episode/{id}
-
-1.	Yukarıda belirtildiği gibi bir endpoint açılmalıdır. Sisteme kayıtlı belirtilen episodların bilgilerini dönmelidir. 
+	ii.	/api/episode/{id}
 
 c.	Location
 
-i.	/location
+	i.	/api/location
 
-1.	Yukarıda belirtildiği gibi bir endpoint açılmalıdır. Sisteme kayıtlı tüm kayıtların listesini dönmelidir. 
+	ii.	/api/location/{id}
 
-2.	Örnek alınan apideki gibi pagination yapısı bulunması artı sebebidir.
+d.	Report (Return which endpoint get how much request)
 
-3.	Endpoint içerisine sıralama için bir parametre belirtilebilmelidir. Bu paramerte ile gelen kayıtlar isme göre veya oynayan karakter sayısına göre sıralanabilmelidir. Bu alan zorunlu olmamalıdır.
+	i.	/api/report
 
-ii.	/location/{id}
+e.	SystemInfo (Return DB latest updated date)
 
-1.	Yukarıda belirtildiği gibi bir endpoint açılmalıdır. Sisteme kayıtlı belirtilen locationların bilgilerini dönmelidir. 
+	i.	/api/systemInfo
 
-ç.	Report
-
-i.	/report
-
-1.	Endpointler raporlanabilir olmalıdır. Bu endpoint ise bu raporları gösteren bir endpoint olacaktır. Response olarak:
-
-2.	 Hangi endpoint’e toplamda kaç istek geldi? 
-
-3.	Gelen/giden header ve body’leri nelerdir? Bunların detaylarını zamanları ile birlikte bir history şeklinde göstermelidir.
-
-d.	SystemInfo
-
-i.	/systemInfo
-
-1.	SystemInfo class’ında bir obje döner. Sistemin veritabanı güncellenme tarihini tutar.
-
-  4.	Report oluşturma için kullanılması gereken header ve body’leri çekme gereksinimi için Filter kullanılmıştır. Bu filter aşağıdaki ekran görüntüsünde verilmektedir.
-
- Bu filter içerisinde yakalanan her bir isteğin hangi controller’a gittiğine bakılarak farklı ResponseType’a sahip Report objeleri oluşturulmaktadır. Objelerin ve ilgili fonksiyonların tamamı açıklayıcı şekilde yazılmıştır. “saveRequestAndBodyAsReport(req,requestBody)” fonksiyonu izlenerek ilgili adımlar incelenebilir.
- 
- Eksik Gereksinimler: 
-
--	“/thread-demo” endpoint
-
--	Yazılan endpointlerin karmaşıklıklıkları(BigO) yorumlar halinde javadoc’a eklenmelidir.
 
